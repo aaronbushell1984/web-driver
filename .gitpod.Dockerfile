@@ -1,3 +1,3 @@
 FROM gitpod/workspace-full
 
-RUN bash -c ". /home/gitpod/.sdkman/bin/sdkman-init.sh && sdk install java 8.0.212.j9-adpt"
+RUN bash -c ". /home/gitpod/.sdkman/bin/sdkman-init.sh && sdk install java 18-oracle"
