@@ -9,5 +9,6 @@ public class ContactPageTestData {
 	public static final String emailAddress = "test@test.com";
 	public static final String phoneNumber = "07777777777";
 	public static final String message = "test";
+	public static final String lastNameError = "This field is required.";
 
 }

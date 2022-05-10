@@ -44,4 +44,8 @@ public class ContactPage {
 		return departmentField.getFirstSelectedOption();
 	}
 
+	public static WebElement lastNameError(WebDriver driver) {
+		return driver.findElement(By.id("lastname-error"));
+	}
+
 }

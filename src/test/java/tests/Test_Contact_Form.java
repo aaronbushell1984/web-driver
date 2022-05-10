@@ -76,9 +76,15 @@ public class Test_Contact_Form {
 		ContactPage.messageField(driver).sendKeys(ContactPageTestData.message);
 		// Check message
 		Assert.assertEquals(ContactPageTestData.message, ContactPage.messageField(driver).getAttribute("value"));
-
-
-
+		
+		// Step 7 Click submit and display warning
+		ContactPage.submitButton(driver).submit();
+		// Take screenshot
+		Screenshot.takeScreenshot(driver, "LastNameMissingWarningShot");	
+		// Check warning is displayed with correct message and have stayed on same page
+		Assert.assertTrue(ContactPage.lastNameError(driver).isDisplayed());
+		Assert.assertTrue(ContactPage.lastNameError(driver).getText().equals(ContactPageTestData.lastNameError));
+		Assert.assertEquals(ContactPageTestData.pageUrl, driver.getCurrentUrl());		
 
 	}
 	
