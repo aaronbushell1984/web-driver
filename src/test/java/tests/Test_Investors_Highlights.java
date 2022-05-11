@@ -53,7 +53,7 @@ public class Test_Investors_Highlights {
 		revenueRow = TableHandler.getRow(trs, InvestorsHighlightsPageTestData.revenueRowNumber);
 		// Get TDs
 		revenueColumnTDs = TableHandler.getTDs(revenueRow);
-		// Get revenue and convert to float
+		// Get revenue and convert to number
 		Double revenue20 = NumberHandler.getDoubleFromCurrency(revenueColumnTDs.get(InvestorsHighlightsPageTestData.revenueColumn20Number).getText());
 		Double revenue21 = NumberHandler.getDoubleFromCurrency(revenueColumnTDs.get(InvestorsHighlightsPageTestData.revenueColumn21Number).getText());
 		// Check revenue 20 is more than 21
