@@ -11,8 +11,10 @@ import org.openqa.selenium.io.FileHandler;
 public class Screenshot {
 
 	public static void takeScreenshot(WebDriver driver, String name) throws IOException {
+
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		FileHandler.copy(scrFile, new File("C:\\Users\\HP\\Pictures\\" + name + ".png"));
+
 	}
-	
+
 }

@@ -1,5 +1,8 @@
 package tests;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.io.IOException;
 
 import org.junit.After;
@@ -10,20 +13,18 @@ import org.openqa.selenium.support.ui.Select;
 
 import driverUtilities.DriverUtilities;
 import functions.Screenshot;
-import junit.framework.Assert;
 import pageObjects.ContactPage;
 import pageObjects.NavBar;
 import testData.ContactPageTestData;
 import testData.HomePageTestData;
 
-
-@SuppressWarnings("deprecation")
 public class Test_Contact_Form {
 	
 	WebDriver driver;
 	
 	@Before
-	public void preConditions() {	
+	public void preConditions() {
+		
 		// Opens the browser
 		DriverUtilities myDriverUtilities = new DriverUtilities();
 		driver = myDriverUtilities.getDriver();
@@ -37,6 +38,7 @@ public class Test_Contact_Form {
 		// Load the website Home page
 		driver.get(HomePageTestData.pageUrl);
 		System.out.println("\nLoad the website - " + HomePageTestData.pageUrl);
+		
 	}
 
 	@Test
@@ -45,9 +47,9 @@ public class Test_Contact_Form {
 		// Step 1 Click the CONTACT link
 		NavBar.contactLink(driver).click();
 		// Check Url
-		Assert.assertEquals(ContactPageTestData.pageUrl, driver.getCurrentUrl());
+		assertEquals(ContactPageTestData.pageUrl, driver.getCurrentUrl());
 		// Check Heading
-		Assert.assertEquals(ContactPageTestData.pageHeading, ContactPage.heading(driver).getText());
+		assertEquals(ContactPageTestData.pageHeading, ContactPage.heading(driver).getText());
 		
 		// Step 2 Select Department
 		Select departmentField = new Select(ContactPage.departmentDropDownList(driver));
@@ -55,36 +57,36 @@ public class Test_Contact_Form {
 		// Take screenshot
 		Screenshot.takeScreenshot(driver, "DepartmentShot");
 		// Check Option
-		Assert.assertEquals(ContactPageTestData.departmentDropDownTextIt, ContactPage.selectedDepartmentOption(driver).getText());
+		assertEquals(ContactPageTestData.departmentDropDownTextIt, ContactPage.selectedDepartmentOption(driver).getText());
 		
 		// Step 3 Enter First Name
 		ContactPage.firstNameField(driver).sendKeys(ContactPageTestData.firstName);
 		// Check name entered
-		Assert.assertEquals(ContactPageTestData.firstName, ContactPage.firstNameField(driver).getAttribute("value"));
+		assertEquals(ContactPageTestData.firstName, ContactPage.firstNameField(driver).getAttribute("value"));
 		
 		// Step 4 Enter email
 		ContactPage.emailField(driver).sendKeys(ContactPageTestData.emailAddress);
 		// Check email
-		Assert.assertEquals(ContactPageTestData.emailAddress, ContactPage.emailField(driver).getAttribute("value"));
+		assertEquals(ContactPageTestData.emailAddress, ContactPage.emailField(driver).getAttribute("value"));
 		
 		// Step 5 Enter phone number
 		ContactPage.phoneNumberField(driver).sendKeys(ContactPageTestData.phoneNumber);
 		// Check number
-		Assert.assertEquals(ContactPageTestData.phoneNumber, ContactPage.phoneNumberField(driver).getAttribute("value"));
+		assertEquals(ContactPageTestData.phoneNumber, ContactPage.phoneNumberField(driver).getAttribute("value"));
 		
 		// Step 6 Enter message
 		ContactPage.messageField(driver).sendKeys(ContactPageTestData.message);
 		// Check message
-		Assert.assertEquals(ContactPageTestData.message, ContactPage.messageField(driver).getAttribute("value"));
+		assertEquals(ContactPageTestData.message, ContactPage.messageField(driver).getAttribute("value"));
 		
 		// Step 7 Click submit and display warning
 		ContactPage.submitButton(driver).submit();
 		// Take screenshot
 		Screenshot.takeScreenshot(driver, "LastNameMissingWarningShot");	
 		// Check warning is displayed with correct message and have stayed on same page
-		Assert.assertTrue(ContactPage.lastNameError(driver).isDisplayed());
-		Assert.assertTrue(ContactPage.lastNameError(driver).getText().equals(ContactPageTestData.lastNameError));
-		Assert.assertEquals(ContactPageTestData.pageUrl, driver.getCurrentUrl());		
+		assertTrue(ContactPage.lastNameError(driver).isDisplayed());
+		assertTrue(ContactPage.lastNameError(driver).getText().equals(ContactPageTestData.lastNameError));
+		assertEquals(ContactPageTestData.pageUrl, driver.getCurrentUrl());		
 
 	}
 	

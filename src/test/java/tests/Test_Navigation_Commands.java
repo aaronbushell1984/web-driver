@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import driverUtilities.DriverUtilities;
 
 
-public class Navigation_Commands {
+public class Test_Navigation_Commands {
 
 	@Test
 	public void navigationCommands() {
