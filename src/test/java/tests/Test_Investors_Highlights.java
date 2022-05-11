@@ -3,6 +3,8 @@ package tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.After;
@@ -41,9 +43,6 @@ public class Test_Investors_Highlights {
 		driver.get(InvestorsHighlightsPageTestData.pageUrl);
 		tableBody = InvestorsHighlightsPage.tableBody(driver);
 		trs = TableHandler.getTRs(tableBody);
-//		actions = new Actions(driver);
-//		jsExecutor = (JavascriptExecutor) driver;
-//		wait = new WebDriverWait(driver, 120);
 		
 	}
 	
@@ -55,14 +54,16 @@ public class Test_Investors_Highlights {
 		// Get TDs
 		revenueColumnTDs = TableHandler.getTDs(revenueRow);
 		// Get revenue and convert to float
-		Float revenue20 = NumberHandler.getFloatFromCurrency(revenueColumnTDs.get(InvestorsHighlightsPageTestData.revenueColumn20Number).getText());
-		Float revenue21 = NumberHandler.getFloatFromCurrency(revenueColumnTDs.get(InvestorsHighlightsPageTestData.revenueColumn21Number).getText());
+		Double revenue20 = NumberHandler.getDoubleFromCurrency(revenueColumnTDs.get(InvestorsHighlightsPageTestData.revenueColumn20Number).getText());
+		Double revenue21 = NumberHandler.getDoubleFromCurrency(revenueColumnTDs.get(InvestorsHighlightsPageTestData.revenueColumn21Number).getText());
 		// Check revenue 20 is more than 21
 		assertTrue(revenue20 > revenue21);
 		
-		// Step 2 - get % change column
+		// Step 2 - get % change column TDs
 		percentChangeColumnTDs = TableHandler.getColumnTDs(tableBody, InvestorsHighlightsPageTestData.hasHeader, InvestorsHighlightsPageTestData.percentChangeColumnNumber);
+		// initialize counter
 		int numberPositive = 0;
+		// count TDs which are positive
 		for (WebElement data : percentChangeColumnTDs) {
 			 if (NumberHandler.checkPositiveNumberString(data.getText())) {
 				 numberPositive ++;
@@ -70,8 +71,16 @@ public class Test_Investors_Highlights {
 		}
 		assertEquals(InvestorsHighlightsPageTestData.percentChangePostiveNumber, numberPositive);
 		
-		// Step 3 - 
-
+		// Step 3 - initialize list for negative % changes
+		List<Double> negativePercentageChanges = new ArrayList<Double>();
+		// populate list with negatives and convert to number
+		for (WebElement data : percentChangeColumnTDs) {
+			 if (NumberHandler.checkNegativeNumberString(data.getText())) {
+				 negativePercentageChanges.add(NumberHandler.getDoubleFromCurrency(data.getText()));
+			 };
+		}
+		// check the highest number matches test data
+		assertEquals(InvestorsHighlightsPageTestData.highestNegativePercentageChange, Collections.min(negativePercentageChanges));
 
 	}
 	

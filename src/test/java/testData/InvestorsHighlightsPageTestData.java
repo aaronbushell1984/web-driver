@@ -10,5 +10,6 @@ public class InvestorsHighlightsPageTestData {
 	public static int percentChangeColumnNumber = 3;
 	public static boolean hasHeader = true;
 	public static int percentChangePostiveNumber = 5;
+	public static Double highestNegativePercentageChange = 18.0;
 
 }
