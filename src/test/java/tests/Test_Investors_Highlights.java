@@ -26,13 +26,10 @@ public class Test_Investors_Highlights {
 	
 	WebDriver driver;
 	WebElement tableBody;
-	List<WebElement> trs;
 	WebElement revenueRow;
+	List<WebElement> trs;
 	List<WebElement> revenueColumnTDs;
 	List<WebElement> percentChangeColumnTDs;
-//	Actions actions;
-//	WebDriverWait wait;
-//	JavascriptExecutor jsExecutor;
 
 	@Before
 	public void setUp() {
