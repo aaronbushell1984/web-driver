@@ -43,7 +43,7 @@ public class Test_University_Details {
 	@Test
 	public void test_university_details() {
 		
-		// Step 1 - Hover our work link
+		// Step 1 - Hover over our work link
 		actions.moveToElement(NavBar.ourWorkLink(driver)).perform();
 		// Check Universities link displayed
 		assertTrue(NavBar.universitiesLink(driver).isDisplayed());
