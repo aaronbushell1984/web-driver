@@ -27,11 +27,6 @@ Feature: Contact
 
   @IncompleteDetails
   Scenario: Test Incomplete Details Provides a Warning
-    Given User attempts to contact FDM at anytime
+    Given User attempts to contact FDM online
     When Incomplete information is provided
     Then A warning is provided
-
-    Examples: 
-      | name  | value | status  |
-      | name1 |     5 | success |
-      | name2 |     7 | Fail    |
