@@ -34,4 +34,8 @@ public class UniversitiesPage {
 		return driver.findElement(By.xpath("//*[@id=\"fdm-location-selector\"]/ul/li[4]/a"));
 	}
 	
+	public static WebElement linkByXpathString(WebDriver driver, String xpath_string) {
+		return driver.findElement(By.xpath(xpath_string));
+	}
+	
 }

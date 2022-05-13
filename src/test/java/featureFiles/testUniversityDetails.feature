@@ -20,7 +20,7 @@
 Feature: University Page
 
   @testUniversityDetails
-  Scenario: Test University Detials
+  Scenario Outline: Test University Details
     Given User on homepage
     When User hovers over our work link
     Then Universities link displayed
@@ -44,20 +44,15 @@ Feature: University Page
     And Waits for language dropdown
     Then Language dropdown is displayed
     And Deutsch link is displayed
-    When User clicks Deutsch link
-    Then User on Universitaeten page
-    And Heading one is correct
-    And Heading two is correct
+    When User clicks "<language_xpath>" link
+    Then User on "<country_url>" page
+    And "<Heading>" is correct
     When User navigates back from Universitaeten
     Then User on University page from Universitaeten
-
-  #@tag2
-  #Scenario Outline: Title of your scenario outline
-    #Given I want to write a step with <name>
-    #When I check for the <value> in step
-    #Then I verify the <status> in step
-#
-    #Examples: 
-      #| name  | value | status  |
-      #| name1 |     5 | success |
-      #| name2 |     7 | Fail    |
+    
+    Examples: 
+    | language_xpath																	| country_url																			| Heading				|
+    | //*[@id=\"fdm-location-selector\"]/ul/li[4]/a 	| https://www.fdmgroup.com/de/universitaeten/ 		| Hochschulen		|
+    | //*[@id='fdm-location-selector']/ul/li[2]/a 		| https://www.fdmgroup.com/en-us/us-universities/ | Universities 	| 
+    
+    
